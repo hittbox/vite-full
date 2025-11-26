@@ -8,22 +8,13 @@
 
 - **스타일:** Tailwind CSS
 
+- **라우팅:** react-router-dom
+
 ---
 
 ## 🧩 앞으로 셋팅해야 할 것
 
-### 1. 라우팅 전략 (Routing)
-
-- **React Router v6** 사용 예정
-
-  - SPA 라우팅 구성
-  - 페이지 단위 코드 스플리팅(`lazy`, `Suspense`) 적용
-  - 로그인/권한 페이지를 위한 Private Route 구성
-  - `/pages` 폴더 기반 라우트 구조 정리
-
----
-
-### 2. 네트워크 (API 통신)
+### 1. 네트워크 (API 통신)
 
 - **axios** 기반 HTTP 클라이언트 설정
 
@@ -37,7 +28,7 @@
 
 ---
 
-### 3. ESLint & 코드 규칙
+### 2. ESLint & 코드 규칙
 
 - ESLint + Prettier 설정
 
@@ -47,7 +38,7 @@
 
 ---
 
-### 4. 상태 관리
+### 3. 상태 관리
 
 - **전역 상태:** Zustand 또는 Redux
 
