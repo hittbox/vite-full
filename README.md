@@ -8,6 +8,10 @@
 
 - **스타일:** Tailwind CSS
 
+- **린팅** ESLint
+
+- **포매터** Prettier
+
 - **라우팅:** react-router-dom
 
 ---
@@ -26,16 +30,7 @@
 
 ---
 
-### 2. ESLint & 코드 규칙
-
-- ESLint + Prettier 설정
-  - 코드 포맷팅·규칙 통일
-  - `eslint-config-airbnb` 또는 `eslint-config-next` 레벨의 확장 규칙 적용 고려
-  - import 순서 정렬 플러그인 추가
-
----
-
-### 3. 상태 관리
+### 2. 상태 관리
 
 - **전역 상태:** Zustand 또는 Redux
   - 간단한 글로벌 UI 상태 관리
