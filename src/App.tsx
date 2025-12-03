@@ -4,8 +4,6 @@ import Router from './Router';
 function App() {
   return (
     <>
-      <div className="text-2xl text-blue-500">App Component</div>
-      <div className="text-3xl text-red-500">tailwind css</div>
       <Router />
     </>
   );
