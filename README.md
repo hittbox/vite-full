@@ -8,11 +8,13 @@
 
 - **스타일:** Tailwind CSS
 
-- **린팅** ESLint
+- **린팅:** ESLint
 
-- **포매터** Prettier
+- **포매터:** Prettier
 
 - **라우팅:** react-router-dom
+
+- **상태 관리:** Zustand
 
 ---
 
@@ -27,13 +29,3 @@
 - **React Query**를 사용한 서버 상태 관리
   - API 캐싱, invalidate, 로딩/에러 핸들링 표준화
   - `useQuery`, `useMutation` 기반 데이터 패칭 구조 확립
-
----
-
-### 2. 상태 관리
-
-- **전역 상태:** Zustand 또는 Redux
-  - 간단한 글로벌 UI 상태 관리
-  - React Query와 역할 분리 (서버 상태 vs 클라이언트 상태)
-
----
