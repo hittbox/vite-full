@@ -1,6 +1,6 @@
-import { useBearStore } from './stores/bearStore';
+import { useBearStore } from '@/stores/bearStore';
 
-export const ZustandPage = () => {
+const ZustandTemplate = () => {
   const { bears, increase, decrease, setBears, reset } = useBearStore();
 
   return (
@@ -25,3 +25,5 @@ export const ZustandPage = () => {
     </div>
   );
 };
+
+export default ZustandTemplate;
