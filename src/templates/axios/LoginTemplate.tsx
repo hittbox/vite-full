@@ -1,15 +1,6 @@
-import supabase from '@/remote/Supabase';
+import { signInWithGithub } from '@/remote/api/LoginApi';
 
 const LoginTemplate = () => {
-  const signInWithGithub = async () => {
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: 'github',
-      options: {
-        redirectTo: 'http://localhost:5173/axios-template',
-      },
-    });
-    console.log(data, error);
-  };
   return (
     <>
       <div className="text-2xl text-blue-500">Login</div>
@@ -17,7 +8,7 @@ const LoginTemplate = () => {
 
       <button
         className="flex cursor-pointer items-center justify-center rounded-xl bg-gray-800 px-3 py-1 text-white"
-        onClick={signInWithGithub}
+        onClick={() => signInWithGithub('http://localhost:5173/axios-template')}
       >
         Login With Github!
       </button>
