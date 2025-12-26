@@ -1,4 +1,4 @@
-export type PostResponse = {
+export type GetPostResponse = {
   id: number;
   user_id: string;
   title: string;

@@ -1,12 +1,12 @@
 import { api } from '../axiosInstance';
-import type { PostRequest } from '../request/PostRequest';
-import type { PostResponse } from '../response/PostResponse';
+import type { CreatePostRequest } from '../request/CreatePostRequest';
+import type { GetPostResponse } from '../response/GetPostResponse';
 
-export const getPosts = async (): Promise<PostResponse[]> => {
-  const res = await api.get<PostResponse[]>('/posts');
+export const getPosts = async (): Promise<GetPostResponse[]> => {
+  const res = await api.get<GetPostResponse[]>('/posts');
   return res.data;
 };
-export const postNewPost = async (newPost: PostRequest): Promise<PostResponse> => {
-  const res = await api.post<PostResponse>('/posts', newPost);
+export const createNewPost = async (newPost: CreatePostRequest) => {
+  const res = await api.post('/posts', newPost);
   return res.data;
 };

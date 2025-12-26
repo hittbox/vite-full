@@ -1,5 +1,5 @@
 import type { PostDomain } from '@/domain/Post';
-import { getPosts, postNewPost } from '@/remote/api/PostApi';
+import { getPosts, createNewPost } from '@/remote/api/PostApi';
 import { useEffect, useState } from 'react';
 
 const AxiosTemplate = () => {
@@ -42,7 +42,7 @@ const AxiosTemplate = () => {
           />
         </div>
 
-        <div className="h-12 border p-2" onClick={() => postNewPost(newPost)}>
+        <div className="h-12 border p-2" onClick={() => createNewPost(newPost)}>
           Create New Post
         </div>
       </div>
