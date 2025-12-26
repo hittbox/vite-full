@@ -1,8 +1,4 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AxiosTemplate from './templates/axios/AxiosTemplate';
-import LoginTemplate from './templates/axios/LoginTemplate';
-import ZustandTemplate from './templates/zustand/ZustandTemplate';
-import RouteTemplate from './templates/route/RouteTemplate';
 import ShopHome from './pages/ShopHome';
 import Login from './pages/Login';
 import MyPage from './pages/MyPage';
@@ -25,12 +21,6 @@ const Router = () => {
         {/* shopping mall user */}
         <Route path="/login" element={<Login />} />
         <Route path="/mypage" element={<MyPage />} />
-
-        {/* templates */}
-        <Route path="/route-template" element={<RouteTemplate />} />
-        <Route path="/axios-template" element={<AxiosTemplate />} />
-        <Route path="/login-template" element={<LoginTemplate />} />
-        <Route path="/zustand" element={<ZustandTemplate />} />
       </Routes>
     </BrowserRouter>
   );
