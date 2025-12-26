@@ -1,4 +1,4 @@
-import CRUDButton from '@/shared/components/GrayButton';
+import CRUDButton from '@/shared/components/CRUDButton';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const ProductDetail = () => {

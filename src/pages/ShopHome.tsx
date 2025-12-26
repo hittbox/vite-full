@@ -1,4 +1,4 @@
-import GrayButton from '@/shared/components/GrayButton';
+import GrayButton from '@/shared/components/CRUDButton';
 import { useNavigate } from 'react-router-dom';
 
 const mockList = [
