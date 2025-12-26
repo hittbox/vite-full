@@ -1,4 +1,4 @@
-import GrayButton from '@/shared/components/CRUDButton';
+import CRUDButton from '@/shared/components/CRUDButton';
 import { useNavigate } from 'react-router-dom';
 
 const mockList = [
@@ -20,7 +20,7 @@ const ShopHome = () => {
   return (
     <div className="flex flex-col items-center justify-center gap-8">
       <div className="mt-20 p-2 text-xl font-bold text-green-500">Enjoy Shopping!</div>
-      <GrayButton onClick={() => nav('/shop/new')} text="새 상품 등록하기" />
+      <CRUDButton onClick={() => nav('/shop/new')} text="새 상품 등록하기" />
 
       <div className="mt-5 flex w-[700px] flex-row flex-wrap justify-center gap-10">
         {mockList.map((item) => (
