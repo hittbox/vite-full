@@ -14,6 +14,7 @@ const ProductDetail = () => {
     // 삭제 로직 구현
     nav('/');
   };
+
   return (
     <div className="m-20 flex flex-col gap-10">
       <div className="text-2xl">{name}</div>
