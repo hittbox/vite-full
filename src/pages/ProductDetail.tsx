@@ -38,8 +38,6 @@ const ProductDetail = () => {
   if (isError) return <div>Error!!</div>;
   if (!product) return <div>Error!!</div>
 
-  console.log(product);
-
   return (
     <div className="m-20 flex flex-col gap-10">
       <div className="text-2xl">{product.name}</div>
