@@ -26,6 +26,8 @@ const ShopHome = () => {
         setIsLoading(false);
       }
     };
+    
+    fetchProducts();
   }, []);
 
   if (isLoading) return <div>Loading...</div>;
