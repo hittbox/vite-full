@@ -1,13 +1,32 @@
+import { type ProductDomain } from '@/domain/Product';
+import { getProduct } from '@/remote/api/ProductApi';
 import CRUDButton from '@/shared/components/CRUDButton';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const ProductDetail = () => {
   const nav = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const img = '(서버에서 가져올) 이미지 URL';
-  const name = `(서버에서 가져올) 상품 이름`;
-  const price = 10000;
-  const description = '상품 상세 설명입니다.';
+  const [product, setProduct] = useState<ProductDomain>();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isError, setIsError] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!id) return;
+
+    const fetchProduct = async (id: string) => {
+      try {
+        const res = await getProduct(id);
+        setProduct(res);
+      } catch (error) {
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProduct(id);
+  }, []);
 
   const handleDeleteProduct = () => {
     alert('정말로 삭제하시겠습니까?');
@@ -15,9 +34,15 @@ const ProductDetail = () => {
     nav('/');
   };
 
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error!!</div>;
+  if (!product) return <div>Error!!</div>
+
+  console.log(product);
+
   return (
     <div className="m-20 flex flex-col gap-10">
-      <div className="text-2xl">{name}</div>
+      <div className="text-2xl">{product.name}</div>
       <div className="flex justify-end gap-2">
         <CRUDButton
           onClick={() => {
@@ -35,15 +60,15 @@ const ProductDetail = () => {
       <form className="flex flex-col gap-5 bg-gray-100">
         <div>
           <div> 이미지: </div>
-          <div>{img}</div>
+          <div>{product.image_url}</div>
         </div>
         <div>
           <div> 제품 설명: </div>
-          <div>{description}</div>
+          <div>{product.description}</div>
         </div>
         <div>
           <div> 가격: </div>
-          <div>{price}</div>
+          <div>{product.price}</div>
         </div>
       </form>
     </div>
