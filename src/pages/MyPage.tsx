@@ -1,35 +1,17 @@
 import { type UserDomain } from '@/domain/Uesr';
-import { getUserData, getUserId } from '@/remote/api/UserApi';
+import { getUserData } from '@/remote/api/UserApi';
 import { useEffect, useState } from 'react';
 
 const MyPage = () => {
-  const [userId, setUserId] = useState<string>();
   const [userData, setUserData] = useState<UserDomain>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
 
-
-  // getUserId
-  useEffect(() => {
-    const fetchId = async () => {
-      try {
-        const id = await getUserId();
-        setUserId(id);
-      } catch (error) {
-        setIsError(true);
-      }
-    };
-
-    fetchId();
-  }, []);
-
   // getUserData
   useEffect(() => {
-    if (!userId) return;
-
     const fetchUserData = async () => {
       try {
-        const res = await getUserData(userId);
+        const res = await getUserData();
         setUserData(res);
       } catch (error) {
         setIsError(true);
@@ -39,7 +21,7 @@ const MyPage = () => {
     }
 
     fetchUserData();
-  }, [userId]);
+  }, []);
 
   const handleLogout = () => {
     alert('로그아웃 하시겠습니까?');
