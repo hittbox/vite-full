@@ -1,5 +1,5 @@
 import { type ProductDomain } from '@/domain/Product';
-import { getProduct } from '@/remote/api/ProductApi';
+import { deleteProduct, getProduct } from '@/remote/api/ProductApi';
 import CRUDButton from '@/shared/components/CRUDButton';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -29,15 +29,22 @@ const ProductDetail = () => {
     fetchProduct(id);
   }, [id]);
 
-  const handleDeleteProduct = () => {
-    alert('정말로 삭제하시겠습니까?');
-    // 삭제 로직 구현
-    nav('/');
+  const handleDeleteProduct = async () => {
+    if (!id) return;
+
+    try {
+      alert('정말로 삭제하시겠습니까?');
+      await deleteProduct(id);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      nav('/');
+    }
   };
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error!!</div>;
-  if (!product) return <div>Error!!</div>
+  if (!product) return <div>Error!!</div>;
 
   return (
     <div className="m-20 flex flex-col gap-10">
