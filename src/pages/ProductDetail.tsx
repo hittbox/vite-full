@@ -19,6 +19,7 @@ const ProductDetail = () => {
         const res = await getProduct(id);
         setProduct(res);
       } catch (error) {
+        console.error(error);
         setIsError(true);
       } finally {
         setIsLoading(false);
@@ -26,7 +27,7 @@ const ProductDetail = () => {
     };
 
     fetchProduct(id);
-  }, []);
+  }, [id]);
 
   const handleDeleteProduct = () => {
     alert('정말로 삭제하시겠습니까?');

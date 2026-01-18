@@ -1,5 +1,5 @@
+import type { ProductDomain } from '@/domain/Product';
 import { createProduct } from '@/remote/api/ProductApi';
-import type { CreateProductRequest } from '@/remote/request/CreateProductRequest';
 import FormContainer from '@/shared/components/FormContainer';
 import SubmitBlueButton from '@/shared/components/SubmitBlueButton';
 import { useState } from 'react';
@@ -8,7 +8,8 @@ import { useNavigate } from 'react-router-dom';
 const ProductCreate = () => {
   const nav = useNavigate();
 
-  const [formData, setFormData] = useState<CreateProductRequest>({
+  const [formData, setFormData] = useState<ProductDomain>({
+    id: '',
     name: '',
     price: 0,
     description: '',
