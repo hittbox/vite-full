@@ -3,5 +3,4 @@ export type CreateProductRequest = {
   price: number;
   description: string;
   image_url: string;
-  created_by: string | null;
-}
+};
