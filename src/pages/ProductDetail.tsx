@@ -1,45 +1,18 @@
-import { type ProductDomain } from '@/domain/Product';
-import { deleteProduct, getProduct } from '@/remote/api/ProductApi';
+import { useDeleteProduct } from '@/hooks/product/useDeleteProduct';
+import { useGetProduct } from '@/hooks/product/useGetProduct';
 import CRUDButton from '@/shared/components/CRUDButton';
-import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const ProductDetail = () => {
   const nav = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const [product, setProduct] = useState<ProductDomain>();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isError, setIsError] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (!id) return;
+  const { data: product, isLoading, isError } = useGetProduct(id || '');
+  const { mutate: deleteProductMutate } = useDeleteProduct(id || '');
 
-    const fetchProduct = async (id: string) => {
-      try {
-        const res = await getProduct(id);
-        setProduct(res);
-      } catch (error) {
-        console.error(error);
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchProduct(id);
-  }, [id]);
-
-  const handleDeleteProduct = async () => {
-    if (!id) return;
-
-    try {
-      alert('정말로 삭제하시겠습니까?');
-      await deleteProduct(id);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      nav('/');
-    }
+  const handleDeleteProduct = () => {
+    alert('정말로 삭제하시겠습니까?');
+    deleteProductMutate();
   };
 
   if (isLoading) return <div>Loading...</div>;
