@@ -7,5 +7,4 @@ export const toProductDomain = (response: GetProductResponse): ProductDomain => 
   price: response.price,
   description: response.description,
   image_url: response.image_url,
-  created_by: response.created_by,
 });

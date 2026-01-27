@@ -1,8 +1,8 @@
-import type { ProductDomain } from '@/domain/Product';
+import type { CreateProductRequest } from '@/remote/request/CreateProductRequest';
 
 type Props = {
-  formData: ProductDomain;
-  setFormData: (data: ProductDomain) => void;
+  formData: CreateProductRequest;
+  setFormData: (data: CreateProductRequest) => void;
 };
 
 const FormContainer = ({ formData, setFormData }: Props) => {

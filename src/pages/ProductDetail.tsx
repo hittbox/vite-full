@@ -1,18 +1,20 @@
+<<<<<<< HEAD
 import { useAppDispatch } from '@/app/hooks';
 import { type ProductDomain } from '@/domain/Product';
 import { deleteProduct, getProduct } from '@/remote/api/ProductApi';
+=======
+import { useDeleteProduct } from '@/hooks/product/useDeleteProduct';
+import { useGetProduct } from '@/hooks/product/useGetProduct';
+>>>>>>> 2e514507d1678997b2fe9754fcd0ea2879bd0240
 import CRUDButton from '@/shared/components/CRUDButton';
-import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { addRecentlyViewed } from '@/features/recentlyViewed/recentlyViewedSlice';
 
 const ProductDetail = () => {
   const nav = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const [product, setProduct] = useState<ProductDomain>();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isError, setIsError] = useState<boolean>(false);
 
+<<<<<<< HEAD
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -54,6 +56,14 @@ const ProductDetail = () => {
     } finally {
       nav('/');
     }
+=======
+  const { data: product, isLoading, isError } = useGetProduct(id || '');
+  const { mutate: deleteProductMutate } = useDeleteProduct(id || '');
+
+  const handleDeleteProduct = () => {
+    alert('정말로 삭제하시겠습니까?');
+    deleteProductMutate();
+>>>>>>> 2e514507d1678997b2fe9754fcd0ea2879bd0240
   };
 
   if (isLoading) return <div>Loading...</div>;
