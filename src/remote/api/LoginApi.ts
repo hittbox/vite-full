@@ -8,3 +8,10 @@ export const signInWithGithub = async (redirectURL: string) => {
     },
   });
 };
+
+export const signOut = async () => {
+  const { error } = await supabase.auth.signOut();
+  if (error) {
+    console.error("[SignOut Error] ", error);
+  }
+};
