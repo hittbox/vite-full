@@ -1,11 +1,15 @@
 import { type UserDomain } from '@/domain/Uesr';
+import { signOut } from '@/remote/api/LoginApi';
 import { getUserData } from '@/remote/api/UserApi';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const MyPage = () => {
   const [userData, setUserData] = useState<UserDomain>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
+
+  const nav = useNavigate();
 
   // getUserData
   useEffect(() => {
@@ -23,9 +27,9 @@ const MyPage = () => {
     fetchUserData();
   }, []);
 
-  const handleLogout = () => {
-    alert('로그아웃 하시겠습니까?');
-    // 로그아웃 처리 로직 추가 예정
+  const handleLogout = async () => {
+    await signOut();
+    nav('/login', { replace: true });
   };
   
   if (isLoading) return <div>Loading...</div>;
