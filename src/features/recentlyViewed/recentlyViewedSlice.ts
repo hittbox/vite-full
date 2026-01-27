@@ -8,7 +8,7 @@ type RecentlyViewedState = {
 
 const initialState: RecentlyViewedState = {
   items: [],
-  limit: 20,
+  limit: 3,
 };
 
 const recentlyViewedSlice = createSlice({
