@@ -1,69 +1,42 @@
-<<<<<<< HEAD
+import { useEffect } from 'react';
 import { useAppDispatch } from '@/app/hooks';
-import { type ProductDomain } from '@/domain/Product';
-import { deleteProduct, getProduct } from '@/remote/api/ProductApi';
-=======
-import { useDeleteProduct } from '@/hooks/product/useDeleteProduct';
-import { useGetProduct } from '@/hooks/product/useGetProduct';
->>>>>>> 2e514507d1678997b2fe9754fcd0ea2879bd0240
-import CRUDButton from '@/shared/components/CRUDButton';
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { useGetProduct } from '@/hooks/product/useGetProduct';
+import { useDeleteProduct } from '@/hooks/product/useDeleteProduct';
+import CRUDButton from '@/shared/components/CRUDButton';
 import { addRecentlyViewed } from '@/features/recentlyViewed/recentlyViewedSlice';
 
 const ProductDetail = () => {
   const nav = useNavigate();
   const { id } = useParams<{ id: string }>();
-
-<<<<<<< HEAD
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if (!id) return;
-
-    const fetchProduct = async (id: string) => {
-      try {
-        const res = await getProduct(id);
-        setProduct(res);
-
-        // store update
-        dispatch(
-          addRecentlyViewed({
-            id: res.id,
-            title: res.name,
-            thumbnailUrl: res.image_url,
-            price: res.price,
-          }),
-        );
-      } catch (error) {
-        console.error(error);
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchProduct(id);
-  }, [id]);
-
-  const handleDeleteProduct = async () => {
-    if (!id) return;
-
-    try {
-      alert('정말로 삭제하시겠습니까?');
-      await deleteProduct(id);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      nav('/');
-    }
-=======
   const { data: product, isLoading, isError } = useGetProduct(id || '');
   const { mutate: deleteProductMutate } = useDeleteProduct(id || '');
 
+  // Redux 최근 본 상품 정보 기록: product 로드 성공 시 1회 기록
+  useEffect(() => {
+    if (!product) return;
+
+    dispatch(
+      addRecentlyViewed({
+        id: product.id,
+        title: product.name,
+        thumbnailUrl: product.image_url ?? '',
+        price: product.price,
+      }),
+    );
+  }, [product, dispatch]);
+
   const handleDeleteProduct = () => {
-    alert('정말로 삭제하시겠습니까?');
+    if (!id) return;
+
+    // 기존 alert 는 행동을 취소해주지 못해서 confirm 으로 변경함
+    const ok = window.confirm('정말로 삭제하시겠습니까?');
+    if (!ok) return;
+
     deleteProductMutate();
->>>>>>> 2e514507d1678997b2fe9754fcd0ea2879bd0240
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -73,18 +46,10 @@ const ProductDetail = () => {
   return (
     <div className="m-20 flex flex-col gap-10">
       <div className="text-2xl">{product.name}</div>
+
       <div className="flex justify-end gap-2">
-        <CRUDButton
-          onClick={() => {
-            nav(`/shop/modify/${id}`);
-          }}
-          text="수정하기"
-        ></CRUDButton>
-        <CRUDButton
-          className="bg-red-300"
-          onClick={handleDeleteProduct}
-          text="삭제하기"
-        ></CRUDButton>
+        <CRUDButton onClick={() => nav(`/shop/modify/${id}`)} text="수정하기" />
+        <CRUDButton className="bg-red-300" onClick={handleDeleteProduct} text="삭제하기" />
       </div>
 
       <form className="flex flex-col gap-5 bg-gray-100">
