@@ -1,22 +1,22 @@
-import type { ProductDomain } from '@/domain/Product';
 import { useCreateProduct } from '@/hooks/product/useCreateProduct';
+import type { CreateProductRequest } from '@/remote/request/CreateProductRequest';
 import FormContainer from '@/shared/components/FormContainer';
 import SubmitBlueButton from '@/shared/components/SubmitBlueButton';
 import { useState } from 'react';
 
 const ProductCreate = () => {
   // UI 데이터
-  const [formData, setFormData] = useState<ProductDomain>({
+  const [formData, setFormData] = useState<CreateProductRequest>({
     name: '',
     price: 0,
     description: '',
     image_url: '',
   });
 
-  const { mutate, isPending } = useCreateProduct();
+  const { mutate: mutateCreateProduct, isPending } = useCreateProduct();
 
   const handleCreateItem = () => {
-    mutate(formData);
+    mutateCreateProduct(formData);
   };
 
   return (

@@ -8,7 +8,6 @@ const ShopHome = () => {
     nav(`/shop/detail/${id}`);
   };
 
-  console.log(useGetProductList());
   const { data: products, isLoading, isError } = useGetProductList();
 
   if (isLoading) return <div>Loading...</div>;
