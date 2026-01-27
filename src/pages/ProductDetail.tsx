@@ -1,8 +1,10 @@
+import { useAppDispatch } from '@/app/hooks';
 import { type ProductDomain } from '@/domain/Product';
 import { deleteProduct, getProduct } from '@/remote/api/ProductApi';
 import CRUDButton from '@/shared/components/CRUDButton';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { addRecentlyViewed } from '@/features/recentlyViewed/recentlyViewedSlice';
 
 const ProductDetail = () => {
   const nav = useNavigate();
@@ -11,6 +13,8 @@ const ProductDetail = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
 
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
     if (!id) return;
 
@@ -18,6 +22,16 @@ const ProductDetail = () => {
       try {
         const res = await getProduct(id);
         setProduct(res);
+
+        // store update
+        dispatch(
+          addRecentlyViewed({
+            id: res.id,
+            title: res.name,
+            thumbnailUrl: res.image_url,
+            price: res.price,
+          }),
+        );
       } catch (error) {
         console.error(error);
         setIsError(true);

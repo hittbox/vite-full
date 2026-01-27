@@ -7,5 +7,10 @@ export const store = configureStore({
   },
 });
 
+// 디버깅용
+store.subscribe(() => {
+  console.log('[Redux] recentlyViewed: ', store.getState().recentlyViewed.items);
+});
+
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
