@@ -1,28 +1,24 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import ShopHome from './pages/ShopHome';
 import Login from './pages/Login';
 import MyPage from './pages/MyPage';
-import TopBar from './shared/components/TopBar';
 import ProductDetail from './pages/ProductDetail';
 import ProductCreate from './pages/ProductCreate';
 import ProductModify from './pages/ProductModify';
 
 const Router = () => {
   return (
-    <BrowserRouter>
-      <TopBar />
-      <Routes>
-        {/* shopping mall */}
-        <Route path="/" element={<ShopHome />} />
-        <Route path="/shop/detail/:id" element={<ProductDetail />} />
-        <Route path="/shop/new" element={<ProductCreate />} />
-        <Route path="/shop/modify/:id" element={<ProductModify />} />
+    <Routes>
+      {/* shopping mall */}
+      <Route path="/" element={<ShopHome />} />
+      <Route path="/shop/detail/:id" element={<ProductDetail />} />
+      <Route path="/shop/new" element={<ProductCreate />} />
+      <Route path="/shop/modify/:id" element={<ProductModify />} />
 
-        {/* shopping mall user */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/mypage" element={<MyPage />} />
-      </Routes>
-    </BrowserRouter>
+      {/* shopping mall user */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/mypage" element={<MyPage />} />
+    </Routes>
   );
 };
 
