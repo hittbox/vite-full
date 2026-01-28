@@ -20,8 +20,24 @@ const ShopHome = () => {
 
       <div className="mt-5 flex w-[700px] flex-row flex-wrap justify-center gap-10">
         {products?.map((item) => (
-          <div key={item.id} className="size-30 bg-blue-400" onClick={() => onClickItem(item.id)}>
-            {item.name} - ${item.price}
+          <div className="flex flex-col">
+            {item.image_url ? (
+              <img
+                key={item.id}
+                src={item.image_url}
+                className="size-30"
+                onClick={() => onClickItem(item.id)}
+              />
+            ) : (
+              <div
+                key={item.id}
+                className="size-30 bg-blue-400"
+                onClick={() => onClickItem(item.id)}
+              ></div>
+            )}
+            <div>
+              {item.name} - ${item.price}
+            </div>
           </div>
         ))}
       </div>

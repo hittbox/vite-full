@@ -48,7 +48,7 @@ const FormContainer = ({ formData, setFormData }: Props) => {
       </div>
       <div>
         <div> 이미지 업로드: </div>
-        <input type="file" className="m-2 border p-2" />
+        <input type="url" name="image_url" onChange={handleChange} className="m-2 border p-2" />
       </div>
     </form>
   );
